@@ -1,4 +1,4 @@
-package br.home.msc.secutiry.jwt;
+package br.home.msc.api.secutiry.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -85,15 +85,15 @@ public class JwtUtil {
 
     public static String getAuthLogin() {
         UserDetails user = getUserDetails();
-        if(user != null){
+        if (user != null) {
             return user.getUsername();
         }
         return null;
     }
 
-    public static UserDetails getUserDetails(){
+    public static UserDetails getUserDetails() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(auth != null && auth.getPrincipal() != null){
+        if (auth != null && auth.getPrincipal() != null) {
             return (UserDetails) auth.getPrincipal();
         }
         return null;

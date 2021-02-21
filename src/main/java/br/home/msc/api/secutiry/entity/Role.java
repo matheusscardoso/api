@@ -1,4 +1,4 @@
-package br.home.msc.secutiry.entity;
+package br.home.msc.api.secutiry.entity;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,4 +21,7 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return nome;
     }
+
+    @Deprecated
+    public Role(){}
 }

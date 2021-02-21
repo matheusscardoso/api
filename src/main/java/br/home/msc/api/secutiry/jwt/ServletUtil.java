@@ -1,4 +1,4 @@
-package br.home.msc.secutiry.jwt;
+package br.home.msc.api.secutiry.jwt;
 
 import com.google.gson.JsonObject;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package br.home.msc.secutiry.jwt;
+package br.home.msc.api.secutiry.jwt;
 
 import lombok.Data;
 

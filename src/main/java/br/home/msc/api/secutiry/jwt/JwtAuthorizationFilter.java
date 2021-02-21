@@ -1,10 +1,8 @@
-package br.home.msc.secutiry.jwt;
+package br.home.msc.api.secutiry.jwt;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,11 +21,11 @@ import java.io.IOException;
 import java.util.List;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
-    private static Logger logger = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthorizationFilter.class);
 
-    private UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager,UserDetailsService userDetailsService) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
         super(authenticationManager);
         this.userDetailsService = userDetailsService;
     }
@@ -46,7 +44,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
         try {
 
-            if(! JwtUtil.isTokenValid(token)) {
+            if (!JwtUtil.isTokenValid(token)) {
                 throw new AccessDeniedException("Acesso negado.");
             }
 
@@ -65,7 +63,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             filterChain.doFilter(request, response);
 
         } catch (RuntimeException ex) {
-            logger.error("Authentication error: " + ex.getMessage(),ex);
+            logger.error("Authentication error: " + ex.getMessage(), ex);
 
             throw ex;
         }

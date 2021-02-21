@@ -1,12 +1,8 @@
-package br.home.msc.secutiry.jwt;
+package br.home.msc.api.secutiry.jwt;
 
-import java.io.IOException;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import br.home.msc.api.secutiry.dto.UserDTO;
+import br.home.msc.api.secutiry.entity.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,10 +12,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-import br.home.msc.security.dto.UserDTO;
-import br.home.msc.security.entity.User;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -43,7 +41,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             String username = login.getUsername();
             String password = login.getPassword();
 
-            if(StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
+            if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
                 throw new BadCredentialsException("Invalid username/password.");
             }
 
@@ -63,7 +61,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String jwtToken = JwtUtil.createToken(user);
 
 //        String json = ServletUtil.getJson("token", jwtToken);
-        String json = UserDTO.create(user, jwtToken).toJson();
+        String json = UserDTO.of(user, jwtToken).toJson();
         ServletUtil.write(response, HttpStatus.OK, json);
     }
 

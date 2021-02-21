@@ -1,17 +1,15 @@
-package br.home.msc.secutiry.jwt.handler;
+package br.home.msc.api.secutiry.jwt.handler;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import br.home.msc.api.secutiry.jwt.ServletUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import br.home.msc.security.jwt.ServletUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Classe chamada quando acontece o erro 403 - FORBIDDEN

@@ -35,10 +35,10 @@ insert into roles(id,nome) values (1, 'ROLE_USER');
 insert into roles(id,nome) values (2, 'ROLE_ADMIN');
 
 
-insert into users(nome,email,login,senha) 
+insert into users(nome, email, login,senha)
 values ('admin','admin','admin','$2a$10$8zSgyezz49zhbQlch/4OEer5zozuk0o5/P2ZhHz3voa9JsLqpS8tK');
 
-insert into users(nome,email,login,senha)
+insert into users(nome, email, login, senha)
 values ('user','user','user','$2a$10$lyOOmAl2ytE76ogvsKrKMuc/rV/znQrHZqB1fgRwTzXy2p2Sz8.xi');
 
 insert into user_roles(user_id,role_id) values(1, 1);
